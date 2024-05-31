@@ -49,9 +49,9 @@ public class Config {
                 "Sounds for latest version: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html\n" +
                 "Sounds for 1.8 or older: https://docs.codelanx.com/Bukkit/1.8/org/bukkit/Sound.html");
 
-        yml.addDefault(SELECTOR_ITEM_STACK_MATERIAL, Main.bw.getForCurrentVersion("WOOL", "WOOL", "WHITE_WOOL"));
-        yml.addDefault(SELECTOR_SLOT, 4);
-        yml.addDefault(GIVE_SELECTOR_SELECTED_TEAM_COLOR, true);
+        yml.addDefault(SELECTOR_ITEM_STACK_MATERIAL, Main.bw.getForCurrentVersion("JUKEBOX", "JUKEBOX", "JUKEBOX"));
+        yml.addDefault(SELECTOR_SLOT, 1);
+        yml.addDefault(GIVE_SELECTOR_SELECTED_TEAM_COLOR, false);
         yml.addDefault(ALLOW_TEAM_CHANGE, true);
         yml.addDefault(ALLOW_MOVE_TROUGH_INVENTORY, false);
         yml.addDefault(BALANCE_TEAMS, true);

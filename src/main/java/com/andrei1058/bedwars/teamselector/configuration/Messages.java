@@ -28,17 +28,17 @@ public class Messages {
      */
     public static void setupMessages() {
         for (Language l : Language.getLanguages()) {
-            addDefault(l, GUI_NAME, "&8Team Selector", "&8Alege o Echipa");
-            addDefault(l, SELECTOR_NAME, "&9Team Selector", "&9Alege o Echipa");
-            addDefault(l, SELECTOR_LORE, Collections.singletonList("&7Right-Click to to open!"), Collections.singletonList("&7Deschide cu click-dreapta!"));
-            addDefault(l, CHOICE_LORE, Arrays.asList("", "&7&o{members}", "", "&eClick to join!"), Arrays.asList("", "&7&o{members}", "", "&eIntra cu Click!"));
-            addDefault(l, CHOICE_NAME, "{color}{team} &f({selected}&7/&f{total})", "{color}{team} &f({selected}&7/&f{total})");
+            addDefault(l, GUI_NAME, "&7Team Selector", "&8Alege o Echipa");
+            addDefault(l, SELECTOR_NAME, "&aTeam Selector &7(Right Click)", "&9Alege o Echipa");
+            addDefault(l, SELECTOR_LORE, Collections.singletonList("&7Choose your team"), Collections.singletonList("&7Deschide cu click-dreapta!"));
+            addDefault(l, CHOICE_LORE, Arrays.asList("&7Click to join the", "{color}{team} Team&7.", "", "&7Current players:", "&7&o{members}", "", "&eClick to join!"), Arrays.asList("", "&7&o{members}", "", "&eIntra cu Click!"));
+            addDefault(l, CHOICE_NAME, "{color}{team} TEAM &f({selected}&7/&f{total})", "{color}{team} &f({selected}&7/&f{total})");
             addDefault(l, SWITCH_DISABLED, "{prefix}&cYou cannot change your team!", "{prefix}&cPoti alege echipa o singura data!");
             addDefault(l, TEAM_JOIN, "{prefix}&eYou joined the {color}{team} &eteam!", "{prefix}&eTe-ai alaturat echipei {color}{team}&e!");
             addDefault(l, TEAM_FULL, "{prefix}{color}{team} &c Team is full!", "{prefix}&cEchipa {color}{team} &c este plina!");
             addDefault(l, TEAM_NOT_BALANCED, "{prefix}&cTeams are not balanced! Try joining another team!", "{prefix}&cEchipele nu sunt echilibrate! Incearca alta!");
             addDefault(l, PARTY_DENIED, "{prefix}&cYou can't choose your team because you're in a party!", "{prefix}&cNu poti alege o echipa pentru că te afli intr-un party!");
-            addDefault(l, CANT_JOIN_WHILE_STARTING, "{prefix}&cYou cannot join this team at this moment. The game is starting!", "{prefix}&cNu poti intra in aceasta echipa chiar acum. Incepe jocul!");
+            addDefault(l, CANT_JOIN_WHILE_STARTING, "{prefix}&cYou cannot join this team at the moment. The game is starting!", "{prefix}&cNu poti intra in aceasta echipa chiar acum. Incepe jocul!");
             addDefault(l, ALREADY_IN_TEAM, "{prefix}&cYou are already in this team!", "{prefix}&cSunteți deja în această echipă");
         }
     }

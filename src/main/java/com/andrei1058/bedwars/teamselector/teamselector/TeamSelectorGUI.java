@@ -58,16 +58,16 @@ public class TeamSelectorGUI {
                 layer = new int[]{};
                 break;
             case 2:
-                layer = new int[]{11, 15};
-                size = 27;
+                layer = new int[]{0, 1};
+                size = 9;
                 break;
             case 3:
                 layer = new int[]{11, 13, 15};
                 size = 27;
                 break;
             case 4:
-                layer = new int[]{10, 12, 14, 16};
-                size = 27;
+                layer = new int[]{0, 1, 2, 3};
+                size = 9;
                 break;
             case 5:
                 layer = new int[]{11, 12, 13, 14, 15};
@@ -82,8 +82,8 @@ public class TeamSelectorGUI {
                 size = 27;
                 break;
             case 8:
-                layer = new int[]{10, 12, 14, 16, 28, 30, 32, 34};
-                size = 45;
+                layer = new int[]{0, 1, 2, 3, 4, 5, 6, 7};
+                size = 9;
                 break;
             case 9:
                 layer = new int[]{10, 11, 12, 14, 15, 16, 30, 31, 32};
@@ -191,10 +191,11 @@ public class TeamSelectorGUI {
         }
 
         //Check if the player is member of a party
+        /*
         if (Main.bw.getPartyUtil().hasParty(player)) {
             player.sendMessage(Language.getMsg(player, Messages.PARTY_DENIED));
             return false;
-        }
+        }*/
 
         String teamDisplayName = bwt.getDisplayName(Main.bw.getPlayerLanguage(player));
 

@@ -40,25 +40,11 @@ public class PlayerGroup implements Comparable<PlayerGroup>{
         return preference;
     }
 
+
     @Override
     public int compareTo(@NotNull PlayerGroup otherGroup) {
-
-        // if is a party
-        if (getPreference() == null){
-            // if comparing with a party prioritize bigger parties
-            if (otherGroup.getPreference() == null) {
-                return Integer.compare(getMembers().size(), otherGroup.getMembers().size());
-            } else {
-                // if comparing with a preference group prioritize if it can fill an entire team
-                return otherGroup.getMembers().size() == arena.getMaxInTeam() ? -1 : 1;
-            }
-        }
-
-        // if it has preference and can fill a team must be always first
-        if (getMembers().size() == arena.getMaxInTeam()){
-            return 1;
-        }
-        // otherwise prioritize parties
-        return -1;
+        // Compare the groups by size
+        return Integer.compare(getMembers().size(), otherGroup.getMembers().size());
     }
+
 }

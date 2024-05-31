@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class TeamSelectorAssigner implements ITeamAssigner {
 
     private final LinkedList<PlayerGroup> playerGroups = new LinkedList<>();
-    private final List<UUID> skippedFromPartyCheck = new ArrayList<>();
+    //private final List<UUID> skippedFromPartyCheck = new ArrayList<>();
     private final List<UUID> playersAddedToATeam = new ArrayList<>();
     private final LinkedList<ITeam> teams = new LinkedList<>();
 
@@ -24,8 +24,10 @@ public class TeamSelectorAssigner implements ITeamAssigner {
         teams.addAll(arena.getTeams());
 
         // create groups from parties
+        /*
         for (Player player : arena.getPlayers()) {
             // check if is party owner or someone with a big rank to identify a party
+            /*
             if (!skippedFromPartyCheck.contains(player.getUniqueId()) && Main.bw.getPartyUtil().isOwner(player)) {
                 // all party members will be added to a skip list in case there are more members with
                 // a rank that allow them to join games.
@@ -60,7 +62,7 @@ public class TeamSelectorAssigner implements ITeamAssigner {
                     playerGroup.addPlayer(toBeAdded);
                 } while (!partyMembers.isEmpty());
             }
-        }
+        }*/
 
         // create groups from registered preferences
         ArenaPreferences registeredPreference = TeamManager.getInstance().getArena(arena);
@@ -143,7 +145,7 @@ public class TeamSelectorAssigner implements ITeamAssigner {
         }
 
         playerGroups.clear();
-        skippedFromPartyCheck.clear();
+        //skippedFromPartyCheck.clear();
         playersAddedToATeam.clear();
         teams.clear();
     }

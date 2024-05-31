@@ -11,24 +11,44 @@ import com.andrei1058.bedwars.teamselector.teamselector.ArenaPreferences;
 import com.andrei1058.bedwars.teamselector.teamselector.TeamManager;
 import com.andrei1058.bedwars.teamselector.teamselector.TeamSelectorAssigner;
 import com.andrei1058.bedwars.teamselector.teamselector.TeamSelectorGUI;
+
+import me.notlewx.privategames.API;
+
+import me.notlewx.privategames.PrivateGames;
+import me.notlewx.privategames.api.party.IParty;
+import me.notlewx.privategames.api.player.IPlayerSettings;
+import me.notlewx.privategames.api.player.IPrivatePlayer;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 public class ArenaListener implements Listener {
 
-    @EventHandler
-    public void onBwArenaJoin(@NotNull PlayerJoinArenaEvent e) {
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onBwArenaJoin(PlayerJoinArenaEvent e) {
+
+        IPrivatePlayer pp = PrivateGames.api.getPrivatePlayer(e.getPlayer());
+        IPlayerSettings p = pp.getPlayerSettings();
+        IArena a = e.getArena();
         if (e.isCancelled()) return;
-        if (e.isSpectator()) return;
-        if (e.getArena() == null) return;
-        if (e.getArena().getStatus() == GameState.waiting || e.getArena().getStatus() == GameState.starting) {
-            Bukkit.getScheduler().runTaskLater(Main.plugin, () -> {
-                if (e.getArena().isPlayer(e.getPlayer()) || e.getArena().getStatus() != GameState.playing) {
+        if (a.isSpectator((Player) pp.getPlayer())) return;
+        if (a.getStatus() == GameState.playing || a.getStatus() == GameState.restarting) return;
+        if (p.isPrivateGameEnabled()) {
+            new BukkitRunnable() {
+                @Override
+                public void run() {
                     TeamSelectorGUI.giveItem(e.getPlayer(), null);
+                    Bukkit.getLogger().info("[PrivateTeamSelector] Giving Team Selector to " + e.getPlayer().getName());
+                    for (Player allPlayer : a.getPlayers()) {
+                        TeamSelectorGUI.giveItem(allPlayer, null);
+                        Bukkit.getLogger().info("[PrivateTeamSelector] Giving Team Selector to " + e.getPlayer().getName());
+                    }
                 }
-            }, 30L);
+            }.runTaskLater(Main.plugin, 30L);
         }
     }
 

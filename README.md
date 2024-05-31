@@ -1,6 +1,7 @@
-##### BedWars1058-TeamSelector
+##### BedWars1058-PrivateTeamSelector
 
 This is an addon plugin for BedWars1058. This plug-in will give you an item when you join an arena. You can use it to choose in which team to play.
+Only works in private games.
 
 ![ss1](https://image.ibb.co/eaJyvK/Screenshot_1.png)
 
