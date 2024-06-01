@@ -4,5 +4,5 @@ version: ${project.version}
 description: Team Selector Add-on for BedWars1058 Minigame (works only in private games).
 website: https://andrei1058.dev
 main: com.andrei1058.bedwars.teamselector.Main
-softdepend: [BedWars1058]
+softdepend: [BedWars1058, BedWars-PrivateGames]
 api-version: '1.13'
