@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@SuppressWarnings("deprecation")
+
 public class TeamSelectorGUI {
 
     //Gui opener identifier
