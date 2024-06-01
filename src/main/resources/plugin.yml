@@ -1,7 +1,7 @@
-name: BedWars1058-TeamSelector
-author: andrei1058
+name: BedWars1058-PrivateTeamSelector
+authors: [andrei1058, Frawlah]
 version: ${project.version}
-description: Team Selector Add-on for BedWars1058 Minigame.
+description: Team Selector Add-on for BedWars1058 Minigame (works only in private games).
 website: https://andrei1058.dev
 main: com.andrei1058.bedwars.teamselector.Main
 softdepend: [BedWars1058]

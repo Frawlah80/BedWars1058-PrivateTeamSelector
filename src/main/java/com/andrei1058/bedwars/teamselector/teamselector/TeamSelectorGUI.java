@@ -1,5 +1,6 @@
 package com.andrei1058.bedwars.teamselector.teamselector;
 
+import com.andrei1058.bedwars.BedWars;
 import com.andrei1058.bedwars.api.arena.GameState;
 import com.andrei1058.bedwars.api.arena.IArena;
 import com.andrei1058.bedwars.api.arena.team.ITeam;
@@ -109,13 +110,14 @@ public class TeamSelectorGUI {
         } else {
             inv = Bukkit.createInventory(null, size, Language.getMsg(player, Messages.GUI_NAME));
         }
-        List<Integer> usedSlots = new ArrayList<>();
+        //List<Integer> usedSlots = new ArrayList<>();
 
         int xx = 0;
         for (ITeam bwt : arena.getTeams()) {
             if (layer.length == xx) break;
-            ItemStack i = new ItemStack(Material.valueOf(Config.config.getString(Config.SELECTOR_ITEM_STACK_MATERIAL)));
-            i = Main.bw.getVersionSupport().colourItem(i, bwt);
+            ItemStack i = new ItemStack(Material.valueOf(BedWars.getForCurrentVersion("STAINED_GLASS_PANE", "STAINED_GLASS_PANE", "BLACK_STAINED_GLASS_PANE")));
+            //i = Main.bw.getVersionSupport().colourItem(i, bwt);
+            i = colorPaneItem(i, bwt);
             i = Main.bw.getVersionSupport().addCustomData(i, TEAM_JOIN_IDENTIFIER + bwt.getName());
 
             String membersCount = String.valueOf(TeamManager.getInstance().getPlayersCount(bwt, arena));
@@ -125,7 +127,7 @@ public class TeamSelectorGUI {
             if (null == im) {
                 continue;
             }
-            im.setDisplayName(Language.getMsg(player, Messages.CHOICE_NAME).replace("{color}", bwt.getColor().chat().toString()).replace("{team}", teamName)
+            im.setDisplayName(Language.getMsg(player, Messages.CHOICE_NAME).replace("{color}", bwt.getColor().chat().toString()).replace("{team}", teamName.toUpperCase())
                     .replace("{selected}", membersCount).replace("{total}", String.valueOf(arena.getMaxInTeam())));
 
             List<String> lore = new ArrayList<>();
@@ -139,7 +141,7 @@ public class TeamSelectorGUI {
                     // prevent ugly space in lore
                     if (members.isEmpty()) continue;
                     for (Player p : TeamManager.getInstance().getMembers(bwt, arena)) {
-                        lore.add(color + p.getDisplayName());
+                        lore.add(color + BedWars.getChatSupport().getSuffix(p) + p.getDisplayName());
                     }
                 } else {
                     lore.add(s);
@@ -149,10 +151,11 @@ public class TeamSelectorGUI {
             im.setLore(lore);
             i.setItemMeta(im);
             inv.setItem(layer[xx], i);
-            usedSlots.add(layer[xx]);
+            //usedSlots.add(layer[xx]);
             xx++;
         }
 
+        /*
         ITeam selected = arena.getTeam(player);
         for (int x = 0; x < inv.getSize(); x++) {
             if (usedSlots.contains(x)) continue;
@@ -162,7 +165,7 @@ public class TeamSelectorGUI {
                 String material = Main.bw.getForCurrentVersion("STAINED_GLASS_PANE", "STAINED_GLASS_PANE", "BLACK_STAINED_GLASS_PANE");
                 inv.setItem(x, Main.bw.getVersionSupport().colourItem(new ItemStack(Material.valueOf(material)), selected));
             }
-        }
+        }*/
 
         player.openInventory(inv);
     }
@@ -294,5 +297,10 @@ public class TeamSelectorGUI {
         i.setItemMeta(im);
         i = Main.bw.getVersionSupport().addCustomData(i, TeamSelectorGUI.TEAM_SELECTOR_IDENTIFIER);
         p.getInventory().setItem(Config.config.getInt(Config.SELECTOR_SLOT), i);
+    }
+
+    private static ItemStack colorPaneItem(ItemStack i, ITeam t) {
+        if (i == null) return null;
+        return new ItemStack(i.getType(), i.getAmount(), t.getColor().itemByte());
     }
 }
